@@ -1,0 +1,103 @@
+Welcome to my shop! (Last Updated {LastUpdated}),
+
+Please message me here or ingame if something catches your eye. My IGN is {IGN}.
+
+[spoiler="          Uniques          "]
+{Uniques}
+[/spoiler]
+[spoiler="          5-Links          "]
+{5Link}
+[/spoiler]
+[spoiler="          Maps          "]
+[spoiler="          66-69          "]
+{66Maps}{67Maps}{68Maps}{69Maps}
+[/spoiler]
+[spoiler="          70-78          "]
+{70Maps}{71Maps}{72Maps}{73Maps}{74Maps}{75Maps}{76Maps}{77Maps}{78Maps}
+[/spoiler]
+[/spoiler]
+[spoiler="          Gems          "]
+[spoiler="          Quality Gems          "]
+{QualityGems}
+[/spoiler]
+[spoiler="          Drop Only Gems          "]
+{DropOnlyGems}
+[/spoiler]
+[spoiler="          Popular Gems          "]
+{PopularGems}
+[/spoiler]
+[spoiler="          Aura Gems          "]
+{AuraGems}
+[/spoiler]
+[spoiler="          Curse Gems          "]
+{CurseGems}
+[/spoiler]
+[spoiler="          Support Gems          "]
+{SupportGems}
+[/spoiler]
+[spoiler="          Leveled Gems          "]
+{Level2Gems}{Level3Gems}{Level4Gems}{Level5Gems}{Level6Gems}{Level7Gems}{Level8Gems}{Level9Gems}{Level10Gems}{Level11Gems}{Level12Gems}{Level13Gems}{Level14Gems}{Level15Gems}{Level16Gems}{Level17Gems}{Level18Gems}{Level19Gems}{Level20Gems}
+[/spoiler]
+[/spoiler]
+[spoiler="          Dual Res Gear          "]
+{DualRes}
+[/spoiler]
+[spoiler="          Tri Res Gear          "]
+{TripRes}
+[/spoiler]
+[spoiler="          IIR/IIQ Gear          "]
+{MagicFind}
+[/spoiler]
+[spoiler="          Weapons and Armor          "]
+[spoiler="          Armor                                 "]
+[spoiler="          Helms          "]
+{RareHelmet}
+[/spoiler]
+[spoiler="          Amulets          "]
+{RareAmulet}
+[/spoiler]
+[spoiler="          Chest Armor          "]
+{RareChest}
+[/spoiler]
+[spoiler="          Rings          "]
+{RareRing}
+[/spoiler]
+[spoiler="          Belts          "]
+{RareBelt}
+[/spoiler]
+[spoiler="          Boots          "]
+{RareBoots}
+[/spoiler]
+[spoiler="          Gloves          "]
+{RareGloves}
+[/spoiler]
+[/spoiler]
+[spoiler="          Shields          "]
+{RareShield}
+[/spoiler]
+[spoiler="          Swords, Axes & Maces          "]
+{RareSword}
+{RareAxe}
+{RareMace}
+[/spoiler]
+[spoiler="          Daggers          "]
+{RareDagger}
+[/spoiler]
+[spoiler="          Claws          "]
+{RareClaw}
+[/spoiler]
+[spoiler="          Bows  & Quivers          "]
+{RareBow}
+{RareQuiver}
+[/spoiler]
+[spoiler="          Wands, Sceptres & Staves          "]
+{RareWand}
+{RareSceptre}
+{RareStaff}
+[/spoiler]
+[/spoiler]
+
+Thanks for visiting!
+
+[url=https://code.google.com/p/procurement/][img]http://i.imgur.com/ZHBMImo.png[/img][/url]
+

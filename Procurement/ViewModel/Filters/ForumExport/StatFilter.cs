@@ -37,6 +37,9 @@ namespace Procurement.ViewModel.Filters
         public bool Applicable(POEApi.Model.Item item)
         {
             Gear gear = item as Gear;
+            //Item.Properties  POEApi.Model.Property  Name=""Armor"" 154,0
+            // Name = 'Energy Shield'
+            // Name = 'Evasion'
             if (gear == null)
                 return false;
 
