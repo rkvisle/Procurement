@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,10 +32,16 @@ namespace POEApi.Model
             items.AddRange(stash.items);
         }
 
+        public void AddCharacterTab(Tab tab, List<Item> characterItems)
+        {
+            items.AddRange(characterItems);
+            Tabs.Add(tab);
+        }
+        
         public void RefreshTab(POEModel currentModel, string currentLeague, int tabId)
         {
             string inventId = ProxyMapper.STASH + (tabId + 1).ToString();
-            items.RemoveAll(i => i.inventoryId == inventId);
+            items.RemoveAll(i => i.InventoryId == inventId);
             Add(currentModel.GetStash(tabId, currentLeague, true));
             refreshItemsByTabTab(tabId);
         }
@@ -59,8 +65,9 @@ namespace POEApi.Model
 
         private void buildItemsByTab()
         {
-            itemsByTab = Tabs.Select(t => ProxyMapper.STASH + (t.i + 1))
-                             .ToDictionary(kvp => kvp, kvp => items.Where(i => i.inventoryId == kvp).ToList());
+            var tabs = Tabs.Select(t => ProxyMapper.STASH + (t.i + 1));
+            
+            itemsByTab = tabs.ToDictionary(kvp => kvp, kvp => items.Where(i => i.InventoryId == kvp).ToList());
         }
 
         private void refreshItemsByTabTab(int tabId)
@@ -72,7 +79,7 @@ namespace POEApi.Model
             }
 
             string inventId = ProxyMapper.STASH + (tabId + 1).ToString();
-            itemsByTab[inventId] = items.Where(i => i.inventoryId == inventId).ToList();
+            itemsByTab[inventId] = items.Where(i => i.InventoryId == inventId).ToList();
         }
 
         public List<T> Get<T>() where T : Item
@@ -101,6 +108,11 @@ namespace POEApi.Model
             return CurrencyHandler.GetTotalCurrencyCount(Get<Currency>());
         }
 
+        public SortedDictionary<string, int> GetTotalGemDistribution()
+        {
+            return GemHandler.GetGemDistribution(Get<Gem>());
+        }
+
         public Dictionary<string, List<Gear>> GetDuplicateRares()
         {
             return Get<Gear>().Where(g => g.Rarity == Rarity.Rare && g.Name != string.Empty)
@@ -115,7 +127,7 @@ namespace POEApi.Model
             decimal totalSpace = NumberOfTabs * tabSize;
             freeSpace.Add("All", (items.Sum(i => (i.W * i.H)) / totalSpace) * 100);
 
-            foreach (var group in items.GroupBy(item => item.inventoryId))
+            foreach (var group in items.GroupBy(item => item.InventoryId))
             {
                 decimal sum = group.Sum(i => (i.W * i.H));
                 freeSpace.Add(group.Key, (sum / tabSize) * 100);

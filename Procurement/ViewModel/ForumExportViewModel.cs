@@ -75,7 +75,7 @@ namespace Procurement.ViewModel
             if (Settings.Lists.ContainsKey("AdditionalTemplates"))
                 AvailableTemplates.AddRange(Settings.Lists["AdditionalTemplates"]);
 
-            CurrentTemplate = "ForumExportTemplate.txt";
+            currentTemplate = "ForumExportTemplate.txt";
         }
 
         private void copy(object parameter)
@@ -91,13 +91,8 @@ namespace Procurement.ViewModel
 
         private void updateForLeague()
         {
-            var space = ApplicationState.Stash[ApplicationState.CurrentLeague].CalculateFreeSpace();
-            space.Remove("All");
-            var betterSpace = space.ToDictionary(k => int.Parse(k.Key.Replace("Stash", "")) - 1, k => k.Value); ;
-
             var tabs = ApplicationState.Stash[ApplicationState.CurrentLeague].Tabs;
-
-            StashItems = tabs.Where(t => betterSpace.ContainsKey(t.i)).Select(t => new TabInfo() { AvailableSpace = betterSpace[t.i], Name = t.Name, Url = t.srcC, ID = t.i }).ToList();
+            StashItems = tabs.Select(t => new TabInfo() { Name = t.Name, Url = t.srcC, ID = t.i }).ToList();
             StashItems.ForEach(s => s.FixName());
         }
 

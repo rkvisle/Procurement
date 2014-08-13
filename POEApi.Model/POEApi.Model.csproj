@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GemHandler.cs" />
     <Compile Include="ItemTradeInfo.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Currency.cs" />
@@ -85,9 +86,6 @@
       <Project>{5933C062-45EA-4BC3-9AE9-0D6CFC26D505}</Project>
       <Name>POEApi.Transport</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Buyouts.xml">

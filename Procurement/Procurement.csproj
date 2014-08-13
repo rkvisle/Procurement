@@ -140,6 +140,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utility\AlphaHittestedImage.cs" />
+    <Compile Include="Utility\CharacterTabInjector.cs" />
     <Compile Include="Utility\ItemHoverRenderer.cs" />
     <Compile Include="Utility\StashHelper.cs" />
     <Compile Include="Utility\VersionChecker.cs" />
@@ -171,6 +172,11 @@
     <Compile Include="ViewModel\Filters\ForumExport\Shield.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\Strength.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\WeaponElementalDamage.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\ManaFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\ManaRegenFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\CharacterAttributeFilters.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\OrStatFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\StatFilterBase.cs" />
     <Compile Include="ViewModel\PricingInfo.cs" />
     <Compile Include="ViewModel\SetBuyoutViewModel.cs" />
     <Compile Include="ViewModel\TabInfo.cs" />
@@ -602,9 +608,6 @@
     <Resource Include="Images\buttons\btn_selected_exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\sticky and thetdev.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Avatars\duelist.png" />
   </ItemGroup>
   <ItemGroup>
@@ -665,6 +668,9 @@
     <Resource Include="Images\Sockets\blue-socketed-white.png" />
     <Resource Include="Images\Sockets\green-socketed-white.png" />
     <Resource Include="Images\Sockets\red-socketed-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sir Marauder bw.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

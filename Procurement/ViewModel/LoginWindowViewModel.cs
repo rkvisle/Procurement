@@ -13,6 +13,7 @@ using POEApi.Model;
 using POEApi.Model.Events;
 using Procurement.View;
 using Procurement.Utility;
+using System.Windows;
 
 namespace Procurement.ViewModel
 {
@@ -104,6 +105,13 @@ namespace Procurement.ViewModel
         {
             toggleControls();
 
+            if (string.IsNullOrEmpty(Email))
+            {
+                MessageBox.Show(string.Format("{0} is required!", useSession ? "Alias" : "Email"), "Error logging in", MessageBoxButton.OK, MessageBoxImage.Stop);
+                toggleControls();
+                return;
+            }
+
             if (!offline)
             {
                 ApplicationState.Model.StashLoading += model_StashLoading;
@@ -147,7 +155,7 @@ namespace Procurement.ViewModel
                 var items = LoadItems(offline, chars).ToList();
 
                 ApplicationState.Model.GetImages(items);
-                
+
                 ApplicationState.SetDefaults();
 
                 if (!offline)
@@ -164,11 +172,10 @@ namespace Procurement.ViewModel
         private IEnumerable<Item> LoadItems(bool offline, IEnumerable<Character> chars)
         {
             bool downloadOnlyMyLeagues = (Settings.UserSettings.ContainsKey("DownloadOnlyMyLeagues") &&
-                bool.TryParse(Settings.UserSettings["DownloadOnlyMyLeagues"], out downloadOnlyMyLeagues) &&
-                downloadOnlyMyLeagues &&
-                Settings.Lists.ContainsKey("MyLeagues") &&
-                Settings.Lists["MyLeagues"].Count > 0
-                );
+                                          bool.TryParse(Settings.UserSettings["DownloadOnlyMyLeagues"], out downloadOnlyMyLeagues) &&
+                                          downloadOnlyMyLeagues &&
+                                          Settings.Lists.ContainsKey("MyLeagues") &&
+                                          Settings.Lists["MyLeagues"].Count > 0);
 
             foreach (var character in chars)
             {
@@ -178,17 +185,11 @@ namespace Procurement.ViewModel
                 if (downloadOnlyMyLeagues && !Settings.Lists["MyLeagues"].Contains(character.League))
                     continue;
 
-                ApplicationState.Characters.Add(character);
-
-                foreach (var item in LoadCharacterInventoryItems(character, offline))
-                {
-                    yield return item;
-                }
-
                 foreach (var item in LoadStashItems(character))
-                {
                     yield return item;
-                }
+
+                foreach (var item in LoadCharacterInventoryItems(character, offline).Where(i => i.InventoryId != "MainInventory"))
+                    yield return item;
             }
 
             if (downloadOnlyMyLeagues && ApplicationState.Characters.Count == 0)
@@ -261,9 +262,10 @@ namespace Procurement.ViewModel
                 success = false;
             }
 
+            CharacterTabInjector.Inject(character, inventory);
             updateStatus(success, offline);
 
-            return inventory.Where(i => i.inventoryId != "MainInventory");
+            return inventory;
         }
 
         private void updateStatus(bool success, bool offline)

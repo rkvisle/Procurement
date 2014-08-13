@@ -34,5 +34,10 @@ namespace Procurement.View
 
             vm.SetCategoryFilter(cb.Content.ToString(), cb.IsChecked);
         }
+
+        private void test(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

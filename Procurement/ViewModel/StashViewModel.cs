@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -118,6 +118,14 @@ namespace Procurement.ViewModel
             }
         }
 
+        public SortedDictionary<string, int> GemDistribution
+        {
+            get
+            {
+                return ApplicationState.Stash[ApplicationState.CurrentLeague].GetTotalGemDistribution();
+            }
+        }
+
         public List<string> AvailableItems { get; private set; }
 
 
@@ -187,15 +195,18 @@ namespace Procurement.ViewModel
             raisePropertyChanged("AvailableItems");
             raisePropertyChanged("Total");
             raisePropertyChanged("TotalDistibution");
+            raisePropertyChanged("GemDistribution");
         }
 
         public void GetTabList(object o)
         {
             Button selector = o as Button;
             ScrollViewer scrollViewer = selector.TemplatedParent as ScrollViewer;
+            scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             TabControl tabControl = scrollViewer.TemplatedParent as TabControl;
 
             selector.ContextMenu = getContextMenu(selector, tabControl);
+            selector.ContextMenu.Height = 550;
             selector.ContextMenu.IsOpen = true;
         }
 
