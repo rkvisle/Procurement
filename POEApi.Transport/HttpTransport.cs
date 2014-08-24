@@ -121,6 +121,7 @@ namespace POEApi.Transport
         public Stream GetStash(int index, string league, bool refresh)
         {
             HttpWebRequest request = getHttpRequest(HttpMethod.GET, string.Format(stashURL, league, index));
+            request.Timeout += 5000;   //avoid unhandled System.Web.WebException - The request was aborted: The operation has timed out
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
             return getMemoryStreamFromResponse(response);
