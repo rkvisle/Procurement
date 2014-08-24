@@ -101,10 +101,10 @@ namespace POEApi.Model
             }
 
             onStashLoaded(POEEventState.AfterEvent, index, proxy.NumTabs);
-
+           
             return new Stash(proxy);
         }
-
+        
         private void logNullStash(Stream stream, string errorPrefix)
         {
             try
@@ -129,6 +129,9 @@ namespace POEApi.Model
             bool onlyMyTabs = myTabs.Count != 0;
 
             Stash stash = GetStash(0, league, false);
+
+            if (stash.Tabs[0].Hidden)
+                stash.ClearItems();
 
             List<Tab> skippedTabs = new List<Tab>();
 
@@ -158,8 +161,25 @@ namespace POEApi.Model
 
         private Stash getAllTabs(string league, Stash stash)
         {
+            List<Tab> hiddenTabs = new List<Tab>();
+
             for (int i = 1; i < stash.NumberOfTabs; i++)
-                stash.Add(GetStash(i, league, false));
+                if (!stash.Tabs[i].Hidden)
+                    stash.Add(GetStash(i, league, false));
+                else
+                    hiddenTabs.Add(stash.Tabs[i]);
+
+            if (stash.Tabs[0].Hidden)
+            {
+                stash.Tabs.Remove(stash.Tabs[0]);
+                --stash.NumberOfTabs;
+            }
+
+            foreach (var tab in hiddenTabs)
+            {
+                stash.Tabs.Remove(tab);
+                --stash.NumberOfTabs;
+            }
 
             return stash;
         }
@@ -175,7 +195,7 @@ namespace POEApi.Model
             return characters.Select(c => new Character(c)).ToList();
         }
 
-        public List<Item> GetInventory(string characterName)
+        public List<Item> GetInventory(string characterName, bool forceRefresh)
         {
             try
             {
@@ -185,7 +205,7 @@ namespace POEApi.Model
                 DataContractJsonSerializer serialiser = new DataContractJsonSerializer(typeof(JSONProxy.Inventory));
                 JSONProxy.Inventory item;
 
-                using (Stream stream = transport.GetInventory(characterName))
+                using (Stream stream = transport.GetInventory(characterName, forceRefresh))
                     item = (JSONProxy.Inventory)serialiser.ReadObject(stream);
 
                 if (item.Items == null)
@@ -248,6 +268,16 @@ namespace POEApi.Model
             yield return transport.GetImage(tab.srcC);
             yield return transport.GetImage(tab.srcR);
             onImageLoaded(POEEventState.AfterEvent, tab.Name);
+        }
+
+        public bool UpdateThread(string threadID, string threadTitle, string threadText)
+        {
+            return transport.UpdateThread(threadID, threadTitle, threadText);
+        }
+
+        public bool BumpThread(string threadId)
+        {
+            return transport.BumpThread(threadId);
         }
 
         private static string GetItemName(Item item)

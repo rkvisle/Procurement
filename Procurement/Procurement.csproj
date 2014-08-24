@@ -94,8 +94,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ApplicationState.cs" />
-    <Compile Include="Controls\BuyoutSettings.xaml.cs">
-      <DependentUpon>BuyoutSettings.xaml</DependentUpon>
+    <Compile Include="Controls\TradeSettings.xaml.cs">
+      <DependentUpon>TradeSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Category.cs" />
     <Compile Include="Controls\CharacterSelector.xaml.cs">
@@ -144,7 +144,7 @@
     <Compile Include="Utility\ItemHoverRenderer.cs" />
     <Compile Include="Utility\StashHelper.cs" />
     <Compile Include="Utility\VersionChecker.cs" />
-    <Compile Include="ViewModel\BuyoutSettingsViewModel.cs" />
+    <Compile Include="ViewModel\TradeSettingsViewModel.cs" />
     <Compile Include="ViewModel\Cache\BitmapCache.cs" />
     <Compile Include="ViewModel\DelegateCommand.cs" />
     <Compile Include="ViewModel\DisplayModeStrategy\DisplayModeFactory.cs" />
@@ -172,11 +172,18 @@
     <Compile Include="ViewModel\Filters\ForumExport\Shield.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\Strength.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\WeaponElementalDamage.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\EnergyShieldFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\IncreasedPhysicalDamageFilter.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\ManaFilter.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\ManaRegenFilter.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\CharacterAttributeFilters.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\OrStatFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\PhysicalDamageFilter.cs" />
     <Compile Include="ViewModel\Filters\ForumExport\StatFilterBase.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\TypeLineFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\VaalFragmentFilter.cs" />
+    <Compile Include="ViewModel\Filters\ForumExport\VaalUberFragmentFilter.cs" />
+    <Compile Include="ViewModel\ForumExportVisitors\TypeLineVisitor.cs" />
     <Compile Include="ViewModel\PricingInfo.cs" />
     <Compile Include="ViewModel\SetBuyoutViewModel.cs" />
     <Compile Include="ViewModel\TabInfo.cs" />
@@ -388,7 +395,7 @@
     <Resource Include="Resources\fontin-smallcaps-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\BuyoutSettings.xaml">
+    <Page Include="Controls\TradeSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -671,6 +678,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Sir Marauder bw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Sockets\white-socketed-white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
